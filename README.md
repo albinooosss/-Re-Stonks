@@ -41,4 +41,4 @@
 - Обращаться к тг боту с помощью request-response запросов
 - И вуаля готово (надеемся на зачет)))
 
-![Untitled](%D0%9F%D0%BF%20%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%201f6240bf29094bbb9a94deaa829fedc2/Untitled%201.png)
+![Untitled (1).png](https://github.com/albinooosss/-Re-Stonks/blob/main/Untitled%20(1).png)
