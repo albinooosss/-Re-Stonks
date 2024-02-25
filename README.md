@@ -17,7 +17,7 @@
 
 # Название: (Re)Stonks
 
-![Untitled](%D0%9F%D0%BF%20%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%201f6240bf29094bbb9a94deaa829fedc2/Untitled.png)
+![Untitled.png](https://github.com/albinooosss/-Re-Stonks/blob/main/Untitled.png)
 
 # Что нужно:
 
