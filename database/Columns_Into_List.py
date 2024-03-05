@@ -1,17 +1,21 @@
 # importing module
 from pandas import *
 
-# reading CSV file
-data = read_csv("sp500_stocks.csv")
+import analysis_model.adaptive_filter
 
-# converting column data to list
-date = data['Date'].tolist()
-name = data['Symbol'].tolist()
-max = data['High'].tolist()
-min = data['Low'].tolist()
-open = data['Open'].tolist()
-close = data['Close'].tolist()
+data = read_csv("new_sp500.csv")
 
-# printing list data
-#print('Date:', date)
-print('High:', max)
+
+def combine_columns_into_list(data, column_names):
+    combined_list = [list(row) for row in zip(*(data[column].tolist() for column in column_names))]
+    return combined_list
+
+
+column_names = ['High', 'Low', 'Open', 'Close', 'Volume']
+combined_data = combine_columns_into_list(data, column_names)
+# print(combined_data[:10])
+
+# print(combined_data[0])
+
+# ex = analysis_model.adaptive_filter.AdaptiveFilter(combined_data,11)
+# print(ex.adjustment())
