@@ -34,7 +34,7 @@ s_and_p = ['MMM', 'AOS', 'ABT', 'ABBV', 'ACN', 'ADBE', 'AMD', 'AES', 'AFL', 'A',
 		   'TMO', 'TJX', 'TSCO', 'TT', 'TDG', 'TRV', 'TRMB', 'TFC', 'TYL', 'TSN', 'USB', 'UBER', 'UDR', 'ULTA', 'UNP', 'UAL', 'UPS', 'URI', 'UNH', 'UHS', 'VLO', 'VTR', 'VLTO', 'VRSN', 'VRSK', 'VZ', 'VRTX',
 		   'VFC', 'VTRS', 'VICI', 'V', 'VMC', 'WRB', 'WAB', 'WBA', 'WMT', 'DIS', 'WBD', 'WM', 'WAT', 'WEC', 'WFC', 'WELL', 'WST', 'WDC', 'WRK', 'WY', 'WHR', 'WMB', 'WTW', 'GWW', 'WYNN', 'XEL', 'XYL', 'YUM', 'ZBRA', 'ZBH', 'ZION', 'ZTS']
 
-start_date = '2021-01-01'
+start_date = '2023-01-01'
 end_date = datetime.today().strftime('%Y-%m-%d')
 
 data = pd.DataFrame()
@@ -47,7 +47,3 @@ for symbol in s_and_p:
 data = data.reset_index()[['Date', 'Symbol', 'Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume']]
 
 data.to_csv("sp500_stock_data.csv", index=False)
-
-
-
-
