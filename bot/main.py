@@ -1,44 +1,50 @@
-import asyncio
 import logging
 
-from aiogram import Bot, Dispatcher, Router, types
-from aiogram.filters import Command, CommandStart
+from aiogram import Bot, Dispatcher, Router
+from aiogram.types import Message
+from aiogram.filters import Command
 from aiogram import F
-from aiogram.utils.formatting import (
-    Bold, as_list, as_marked_section
-)
-from dotenv import load_dotenv
 
-from bot.keyboards import kb, all_keyboards
-
+import text
+from bot.keyboards import all_keyboards
 import config
 
-load_dotenv()
-
 bot = Bot(token=config.BOT_TOKEN, parse_mode="HTML")
+dp = Dispatcher()
 
 router = Router()
-dp = Dispatcher()
-dp.include_routers(router, all_keyboards.router1, all_keyboards.router2)
+dp.include_routers(router, all_keyboards.router1, all_keyboards.router2, all_keyboards.router3)
 
-@router.message(F.text, CommandStart())
-async def cmd_start(message: types.Message):
+@router.message(Command(commands=['start']))
+async def process_start_command(message: Message):
     await message.answer(
-        "📈Привет! Я - <b>бот</b>, созданный на основе технологий "
-        "машинного обучения. Я умею прогнозировать "
-        "динамику цен акций. (Внимание! Ни я, ни мои создатели не можем "
-        "гарантировать достоверность и корректность прогноза)📈"
+        text.START_MESSAGE
     )
 
     await message.answer(
         "Выбери интересующий пункт:",
-        reply_markup=kb.select_data
+        reply_markup=all_keyboards.select_data
     )
 
-async def main():
-    await dp.start_polling(bot)
+@router.message(Command(commands=['help']))
+async def process_help_command(message: Message):
+    await message.answer(
+        '/choice - выбор компании\n'
+        '/clown - бот называет клоуна'
+    )
+
+@router.message(Command(commands=['choice']))
+async def process_help_command(message: Message):
+    await message.answer(
+        'Выбери интересующий пункт:',
+        reply_markup=all_keyboards.select_data
+    )
+
+@router.message(Command(commands=['clown']))
+async def send_clown(message: Message):
+    await message.answer('рустам клоун')
 
 
 if __name__ == "__main__":
+    dp.run_polling(bot)
     logging.basicConfig(level=logging.INFO)
-    asyncio.run(main())
