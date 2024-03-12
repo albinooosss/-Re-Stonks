@@ -13,9 +13,9 @@ def combine_columns_into_list(data, column_names):
 
 column_names = ['High', 'Low', 'Open', 'Close', 'Volume']
 combined_data = combine_columns_into_list(data, column_names)
-# print(combined_data[:10])
 
-# print(combined_data[0])
 
-# ex = analysis_model.adaptive_filter.AdaptiveFilter(combined_data,11)
-# print(ex.adjustment())
+ex = analysis_model.adaptive_filter.AdaptiveFilter(combined_data[:1000], 100)
+ex.adjustment()
+print(sum(ex.errors) / len(ex.errors))
+ex.show_plots()
