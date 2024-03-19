@@ -19,7 +19,7 @@ def get_current_stock_price(stock_name):
 
 def get_stock_data(stock_name):
 	data = pd.DataFrame()
-	start_date = (datetime.today() - timedelta(days=9)).strftime('%Y-%m-%d')
+	start_date = (datetime.today() - timedelta(days=1000)).strftime('%Y-%m-%d')
 	end_date = datetime.today().strftime('%Y-%m-%d')
 
 	stock_data = yf.download(stock_name, start=start_date, end=end_date)
@@ -43,6 +43,6 @@ def get_stock_data(stock_name):
 
 	# Сохраняем данные в файл CSV
 	data.to_csv(f"{stock_name}_data.csv", index=False)
-
+	return data
 # get_stock_data(stock_name)
 

@@ -1,5 +1,4 @@
 from pandas import *
-
 # data = read_csv("MMM_data.csv")
 
 def columns_into_list(data):

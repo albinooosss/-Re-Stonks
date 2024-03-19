@@ -1,17 +1,13 @@
 import matplotlib.pyplot as plt
 from math import *
 from simple_predict import Simple_Predict
+from errors import Errors
 
-class AdaptiveFilter():
+
+class AdaptiveFilter(Errors):
 
     w = []
     def __init__(self, data, N=None):
-        #пока что считаем что data - это список из 5 списков: максимальные цены, минимальные цены,
-        #цены открытия, цены закрытия, объем сделок
-        s = Simple_Predict(data)
-        self.s_pr = s.predicts
-
-
         self.N = N
         self.errors = []
         self.pr_err = []
@@ -25,7 +21,7 @@ class AdaptiveFilter():
 
     def adjustment(self):
         self.predict = [-1, -1]
-        for i in range(2, len(self.data)):
+        for i in range(2, len(self.data) - 1):
             a = round((self.data[i - 2] - self.m) / self.step)
             b = round((self.data[i - 1] - self.m) / self.step)
             if a >= self.N or b >= self.N:
@@ -34,7 +30,7 @@ class AdaptiveFilter():
             self.predict.append(next)
             err = self.data[i] - next
             delta = err / (self.data[i - 1]) if self.data[i - 1] != self.data[i - 2] else 0
-            self.errors.append(abs(err / self.data[i]))
+            self.errors.append(self.predict[-1] - self.data[i + 1])
             self.pr_err.append(abs(1 - next / self.data[i]))
             AdaptiveFilter.w[a][b] += delta
 
@@ -49,15 +45,6 @@ class AdaptiveFilter():
         plt.plot(x, y)
         plt.show()
 
-    def show_plots(self):
-        x = [(i + 1) for i in range(len(self.errors))]
-        y1 = self.predict[2:]
-        y2 = self.data[2:]
-
-        y3 = self.s_pr
-
-        plt.plot(x, y1, 'b', x, y2, 'r-', x, y3, 'g')
-        plt.show()
 
     def get_pr_err(self):
-        print('AVG err of AF(%) = {}'.format(sum(self.pr_err) / len(self.pr_err)))
+        print('AVG err of AF(%) = {}'.format(100 * sum(self.pr_err) / len(self.pr_err)))
