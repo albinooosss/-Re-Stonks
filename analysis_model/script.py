@@ -8,4 +8,4 @@ def apply(company_name):
     N = 50
     filter = AdaptiveFilter(data, N)
     filter.adjustment(1)
-    return filter.apply(data[-1], data[-2])
+    return filter.apply(sum(data[-1]) / len(data[-1]), sum(data[-2]) / len(data[-2]))

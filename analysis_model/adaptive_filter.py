@@ -54,8 +54,8 @@ class AdaptiveFilter(Errors):
 
 
     def apply(self, p1, p2):
-        a = (round(p2) - self.m) / self.step
-        b = (round(p1) - self.m) / self.step
+        a = round((p2 - self.m) / self.step)
+        b = round((p1 - self.m) / self.step)
         return p1 + (p1 - p2) * AdaptiveFilter.next_day[a][b]
 
     def show_err_plot(self):
