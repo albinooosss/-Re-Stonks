@@ -30,7 +30,7 @@ class Errors(ABC):
         s = 0
         start = len(self.data) - len(self.errors)
         for i in range(len(self.errors)):
-            s += (self.errors[i] / self.data[start + i])
+            s += (abs(self.errors[i]) / self.data[start + i])
         return 100 / len(self.errors) * s
 
     def MRE(self):
