@@ -22,7 +22,7 @@ for i in stock_names[:10]:
     #filter.show_plots()
     #print(simple.MSE())
     #simple.show_plots()
-    print('R = ', filter.Coefficient_of_determination(simple))
+    print('R = ', simple.Coefficient_of_determination(filter))
     #print(rand.MRE())
     #rand.show_plots()
     #print(stable.MRE())
