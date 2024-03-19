@@ -36,6 +36,9 @@ class Errors(ABC):
     def MRE(self):
         return self.MAPE() / 100
 
+    def Coefficient_of_determination(self, model):
+        return 1 - (self.MSE() * len(self.errors)) / (model.MSE() * len(self.errors))
+
     def show_plots(self):
         sp = len(self.predict) - len(self.errors)
         sd = len(self.data) - len(self.errors)

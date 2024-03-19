@@ -9,22 +9,23 @@ from stable_ratio import Stable_Ratio
 from avg_predict import Average_Predict
 
 
-N = 10
-for i in stock_names[:1]:
-    data = columns_into_list(get_stock_data(i))[:1000]
+N = 50
+for i in stock_names[:10]:
+    data = columns_into_list(get_stock_data(i))
     filter = AdaptiveFilter(data, N)
-    simple = Simple_Predict(data, 5)
-    filter.adjustment(5)
+    simple = Simple_Predict(data, 21)
+    filter.adjustment(21)
     rand = Random_Predict(data)
-    stable = Stable_Ratio(data, 5)
+    stable = Stable_Ratio(data, 21)
     avg = Average_Predict(data)
-    print(filter.MRE())
-    filter.show_plots()
-    print(simple.MRE())
-    simple.show_plots()
-    print(rand.MRE())
-    rand.show_plots()
-    print(stable.MRE())
-    stable.show_plots()
-    print(avg.MRE())
-    avg.show_plots()
+    #print(filter.MSE())
+    #filter.show_plots()
+    #print(simple.MSE())
+    #simple.show_plots()
+    print('R = ', filter.Coefficient_of_determination(simple))
+    #print(rand.MRE())
+    #rand.show_plots()
+    #print(stable.MRE())
+    #stable.show_plots()
+    #print(avg.MRE())
+    #avg.show_plots()
